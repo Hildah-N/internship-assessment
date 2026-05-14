@@ -283,7 +283,7 @@ def process(input_mode, text_input, audio_input, target_language):
 # ── Build Gradio UI ──────────────────────────────────────────────────────────
 
 def build_ui():
-    with gr.Blocks(title="GenAI", css=CUSTOM_CSS) as demo:
+    with gr.Blocks(title="GenAI") as demo:
 
         # Header
         gr.HTML("""
@@ -391,4 +391,5 @@ def build_ui():
 if __name__ == "__main__":
     demo = build_ui()
     demo.queue()
-    demo.launch(server_name="127.0.0.1", server_port=7860)
+    demo.launch(server_name="127.0.0.1", server_port=7860,css=CUSTOM_CSS,
+    ssr_mode=False,)
