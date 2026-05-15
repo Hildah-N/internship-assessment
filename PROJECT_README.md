@@ -107,15 +107,15 @@ Never commit your `.env` file. It is already listed in `.gitignore`.
 
 ## Start Screen
 
-![Start Screen](screenshots/start.png)
+![Start Screen](Screenshots/start.png)
 
 ## Text Input
 
-![Text Input](screenshots/text.png)
+![Text Input](Screenshots/text.png)
 
 ## Audio Input
 
-![Audio Input](screenshots/audio.png)
+![Audio Input](Screenshots/audio.png)
 
 ### Text input mode
 
