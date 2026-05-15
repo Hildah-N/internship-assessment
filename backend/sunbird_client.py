@@ -112,7 +112,7 @@ def detect_text_language(text: str) -> str:
     headers = _get_headers("application/json")
     payload = {"text": text}
 
-    response = requests.post(url, json=payload, headers=headers, timeout=(30, 60))
+    response = requests.post(url, json=payload, headers=headers, timeout=(40, 300))
     response.raise_for_status()
 
     data = response.json()
@@ -129,7 +129,7 @@ def detect_audio_language(audio_path: str) -> str:
 
     with open(audio_path, "rb") as f:
         files = {"audio": f}
-        response = requests.post(url, files=files, headers=headers, timeout=(10, 120))
+        response = requests.post(url, files=files, headers=headers, timeout=(40, 300))
 
     response.raise_for_status()
     data = response.json()
@@ -150,7 +150,7 @@ def transcribe_audio(audio_path: str) -> str:
 
     with open(audio_path, "rb") as f:
         files = {"audio": (filename, f, mime)}
-        response = requests.post(url, files=files, headers=headers, timeout=(20, 300))
+        response = requests.post(url, files=files, headers=headers, timeout=(40, 300))
 
     response.raise_for_status()
     data = response.json()
@@ -171,7 +171,7 @@ def summarise_text(text: str, language_code: str = "eng") -> str:
     headers = _get_headers("application/json")
     payload = {"text": text}
 
-    response = requests.post(url, json=payload, headers=headers, timeout=(10, 300))
+    response = requests.post(url, json=payload, headers=headers, timeout=(40, 300))
     response.raise_for_status()
 
     data = response.json()
@@ -204,7 +204,7 @@ def translate_text(text: str, target_language: str) -> str:
         ]
     }
 
-    response = requests.post(url, json=payload, headers=headers, timeout=(10, 300))
+    response = requests.post(url, json=payload, headers=headers, timeout=(40, 300))
     response.raise_for_status()
 
     data = response.json()
@@ -228,7 +228,7 @@ def synthesise_speech(text: str, language: str) -> bytes:
         "speaker_id": speaker_id
     }
 
-    response = requests.post(url, json=payload, headers=headers, timeout=(10, 120))
+    response = requests.post(url, json=payload, headers=headers, timeout=(40, 120))
     response.raise_for_status()
 
     data = response.json()
@@ -236,7 +236,7 @@ def synthesise_speech(text: str, language: str) -> bytes:
     audio_url = _extract(data, "audio_url")
 
     try:
-        audio_response = requests.get(audio_url, timeout=(10, 120))
+        audio_response = requests.get(audio_url, timeout=(40, 120))
         audio_response.raise_for_status()
     except requests.exceptions.ConnectionError:
         raise RuntimeError(
